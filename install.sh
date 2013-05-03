@@ -6,7 +6,7 @@ echo
 create_symlinks () {
     if [ ! -f ~/.vim ]; then
         echo "Now, we will create ~/.vim and ~/.vimrc files, pointing to the directory vimvundle,"
-		echo "to configure Vim. Is the best practice."
+        echo "to configure Vim. Is the best practice."
         ln -sfn vimvundle ~/.vim
     fi
 
@@ -21,14 +21,14 @@ echo "3) Create bundle directory in vimvundle."
 
 if [ -d "vimvundle" ]; then
     cd
-	create_symlinks
+    create_symlinks
     cd vimvundle
 
-	if [ ! -d "bundle" ]; then
-		echo "Now, we will create a separate directory to store the bundles Vim will use."
-		mkdir -p tmp/backup tmp/swap tmp/undo
-		mkdir bundle
-	fi
+    if [ ! -d "bundle" ]; then
+        echo "Now, we will create a separate directory to store the bundles Vim will use."
+        mkdir -p tmp/backup tmp/swap tmp/undo
+        mkdir bundle
+    fi
 fi
 
 echo
