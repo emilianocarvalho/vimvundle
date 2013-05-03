@@ -12,7 +12,7 @@ How to install
 
 ### Small steps
 
-Grab the project:
+**Grab the project:**
 
     $ cd
     $ git clone git://github.com/emilianocarvalho/vimvundle.git
@@ -20,7 +20,7 @@ Grab the project:
     $ ln -sfn vimvundle/vimrc ~/.vimrc
     $ cd vimvundle
 
-Create required directories
+**Create required directories**
 
     mkdir bundle
     mkdir -p tmp/backup tmp/swap tmp/undo
@@ -31,11 +31,11 @@ Create required directories
 
 or copy your preferred schema color in vimvundle
 
-Set up Vundle
+**Set up Vundle**
 
     $ git clone https://github.com/gmarik/vundle.git bundle/vundle
 
-Install plugins:
+**Install plugins:**
 
     $ vim +BundleInstall +qall
 
