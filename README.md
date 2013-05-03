@@ -3,86 +3,62 @@ vimvundle
 
 Repository for Vim with Vundle, trying not change the standard features of Vim.
 
-
 Based on the Vimifield Zaiste!
 
 [Vimifield](git://github.com/zaiste/vimified.git).
 
 [Vundle](https://github.com/gmarik/vundle).
 
-![ctrlp view](http://f.cl.ly/items/3a0X3F3x3r0K1n1u1Y2r/vimified.png)
-
 
 How to install
 --------------
 
-### For lazy people
-
-Copy/Paste this line in your CLI:
-
-    curl -L https://raw.github.com/zaiste/vimified/master/install.sh | sh
-
-### For those who actually care about what is done
+### Small steps
 
 Grab the project:
 
-    cd
-    git clone git://github.com/zaiste/vimified.git
-    ln -sfn vimified ~/.vim
-    ln -sfn vimified/vimrc ~/.vimrc
-    cd vimified
+    $ cd
+    $ git clone git://github.com/emilianocarvalho/vimvundle.git
+    $ ln -sfn vimvundle ~/.vim
+    $ ln -sfn vimvundle/vimrc ~/.vimrc
+    $ cd vimvundle
 
 Create required directories
 
     mkdir bundle
     mkdir -p tmp/backup tmp/swap tmp/undo
 
+    **Colors**
+
+    mkdir colors 
+
+    or copy your preferred schema color in vimvundle
+
 Set up Vundle
 
-    git clone https://github.com/gmarik/vundle.git bundle/vundle
-
-Set up your local configuration via `local.vimrc` file and choose package you
-want to use:
-
-    echo "let g:vimified_packages = ['general', 'coding', 'clojure', 'color']" > local.vimrc
+    $ git clone https://github.com/gmarik/vundle.git bundle/vundle
 
 Install plugins:
 
-    vim +BundleInstall +qall
+    $ vim +BundleInstall +qall
+
+    or
+
+    $ vim
+    :BundleInstall
+
 
 Enjoy!
+
 
 Configuration
 -------------
 
-You can overwrite default configuration and key bindings by using one of following files:
 
-`~/.vim/before.vimrc` will be loaded before everything else.
 
-`~/.vim/after.vimrc` will be loaded after all configuration options are set. This is best place to change vimified default behaviour (keybindings) and/or color scheme.
 
 Packages
 --------
-
-Inside your local configuration file `$HOME/.vim/local.vimrc` set `g:vimified_packages` variable with packages you want to use.
-
-For example, if you are only interested in Ruby/Rails related stuff, put something like the following line inside `$HOME/.vim/local.vimrc`:
-
-    let g:vimified_packages = ['general', 'coding', 'ruby', 'color']
-
-Avaible packages:
-
- * general
- * fancy
- * os
- * coding
- * ruby
- * html
- * css
- * js
- * clojure
- * haskell
- * color
 
 ### General
 
@@ -348,19 +324,27 @@ A dark colourscheme combining Jellybeans, Solarized and Tomorrow Night.
 
 ## Call for Help
 
-If you have ideas on how to make this Vim configration framework better, don’t hesitate to fork and send pull requests. Thanks!
+If you want to improve it, do not hesitate, do it. Thanks!
 
-### Major Contributors
+
+### Inspired by
+ 
+ * [vimifield](https://github.com/zaiste/vimified.git)
+ 
+
+ **Major Contributors of Vimifield**
 
  * [Adrien Giboire](https://github.com/AdrienGiboire)
  * [sharnik](https://github.com/sharnik)
 
-### Inspired by
+
+ **Vimfield Inspired by**
 
  * [dotvim](https://github.com/astrails/dotvim)
  * [Steve Losh's dotfiles](https://github.com/sjl/dotfiles)
  * [skwp's dotfiles](https://github.com/skwp/dotfiles)
 
-### Cooked by [Zaiste!](http://zaiste.net)
+
+### By [Emiliano Carvalho](https://github.com/emilianocarvalho)
 
 
