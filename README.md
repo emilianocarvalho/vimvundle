@@ -51,7 +51,13 @@ Enjoy!
 Configuration
 -------------
 
+Copy your color scheme in the directory colors or schema Molokai:
 
+    ../bundle/molokai/colors/molokai.vim 
+
+Change your vimrc and set:
+    
+    colorscheme <his-colorscheme>
 
 
 Packages
