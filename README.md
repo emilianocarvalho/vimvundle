@@ -33,15 +33,15 @@ or copy your preferred schema color in vimvundle
 
 **Set up Vundle**
 
-    $ git clone https://github.com/gmarik/vundle.git bundle/vundle
+    git clone https://github.com/gmarik/vundle.git bundle/vundle
 
 **Install plugins:**
 
-    $ vim +BundleInstall +qall
+    vim +BundleInstall +qall
 
 or
 
-    $ vim
+    vim
     :BundleInstall
 
 
