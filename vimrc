@@ -1,4 +1,13 @@
-" _ Settings
+" vimrc
+" Author: Emiliano Carvalho <emilianojpaoh@zaiste.net>
+" Source: https://github.com/zaiste/vimified
+"
+" Have fun!
+"
+" Fork
+" Emiliano Carvalho
+
+" _. Settings
 
 set nocompatible               " be iMproved
 filetype off                   " required!
@@ -21,6 +30,9 @@ set history=1000
 set incsearch
 set laststatus=2
 set list
+
+" Don't redraw while executing macros
+set nolazyredraw
 
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 set showbreak=↪
@@ -62,13 +74,13 @@ set visualbell
 set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc,tmp,*.scssc
 set wildmenu
 
-" _ folding
+" _. folding
 
 set foldlevelstart=0
 set foldmethod=syntax
 
 
-" _ backups {{{
+" _. backups
 set undodir=~/.vim/tmp/undo//     " undo files
 set undofile
 set undolevels=3000
@@ -77,14 +89,27 @@ set backupdir=~/.vim/tmp/backup// " backups
 set directory=~/.vim/tmp/swap//   " swap files
 set backup
 set noswapfile
-" _ }}}
+
+
+" Coloca um cabecalho para scripts 'bash' caso a linha 1 esteja vazia
+au BufEnter *.sh if getline(1) == "" | :call setline(1, "#!/usr/bin/env bash") | endif
+
+" Fechamento automatico de parenteses
+" imap { {}<left>
+" imap ( ()<left>
+" imap [ []<left>
+
+" set ve=all "permite mover o cursor para areas onde nao há texto.
+set ttyfast    "Envia mais caracteres ao terminal, melhorando o redraw de janelas.
 
 
 " PACKAGES {{{
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
+" _. Vundle
+"
+"    let Vundle manage Vundle
+"    required! 
+    Bundle 'gmarik/vundle'
 
 " _. General 
     Bundle "mileszs/ack.vim"
@@ -100,8 +125,8 @@ Bundle 'gmarik/vundle'
 
     Bundle 'scrooloose/nerdtree'
     nmap <C-n> :NERDTreeToggle<CR>
-	autocmd vimenter * NERDTree
-	map <C-n> :NERDTreeToggle<CR>
+    autocmd vimenter * NERDTree
+    map <C-n> :NERDTreeToggle<CR>
     
     "Disable the scrollbars (NERDTree)
     "set guioptions-=r
@@ -258,26 +283,16 @@ Bundle 'gmarik/vundle'
     Bundle 'zaiste/Atom'
     Bundle 'w0ng/vim-hybrid'
 
-"
-" PACKAGES END ******************************************************************************
+" PACKAGES }}}
 
 
-"coloca um cabecalho para scripts 'bash' caso a linha 1 esteja vazia
-	au BufEnter *.sh if getline(1) == "" | :call setline(1, "#!/bin/bash") | endif
 
-" Fechamento automatico de parenteses
-" imap { {}<left>
-" imap ( ()<left>
-" imap [ []<left>
 
-" set ve=all "permite mover o cursor para areas onde nao há texto.
-" set ttyfast    "Envia mais caracteres ao terminal, melhorando o redraw de janelas.
+" PACKAGE TagBar - Setup
 
-" PACKAGE TagBar
+    nmap <F8> :TagbarToggle<CR>
 
-	nmap <F8> :TagbarToggle<CR>
-
-" Ruby
+" _. Ruby
 "
 let g:tagbar_type_ruby = {
     \ 'kinds' : [
@@ -290,7 +305,7 @@ let g:tagbar_type_ruby = {
     \ ]
 \ }
 
-" Google Go tagbar
+" _. Google Go tagbar
 let g:tagbar_type_go = {
     \ 'ctagstype': 'go',
     \ 'kinds' : [
@@ -302,7 +317,7 @@ let g:tagbar_type_go = {
     \]
 \}
 
-" Coffee-Script
+" _. Coffee-Script
 "
 let g:tagbar_type_coffee = {
     \ 'ctagstype' : 'coffee',
@@ -315,10 +330,10 @@ let g:tagbar_type_coffee = {
     \ ]
 \ }
 
-" Posix regular expressions for matching interesting items. Since this will
-" be passed as an environment variable, no whitespace can exist in the options
-" so [:space:] is used instead of normal whitespaces.
-" Adapted from: https://gist.github.com/2901844
+" _. Posix regular expressions for matching interesting items. Since this will
+"    be passed as an environment variable, no whitespace can exist in the options
+"    so [:space:] is used instead of normal whitespaces.
+"    Adapted from: https://gist.github.com/2901844
 let s:ctags_opts = '
   \ --langdef=coffee
   \ --langmap=coffee:.coffee
