@@ -3,11 +3,8 @@ vimvundle
 
 Repository for Vim with Vundle, trying not change the standard features of Vim.
 
-Based on the Vimifield Zaiste!
 
-[Vimifield](https://github.com/zaiste/vimified.git).
-
-[Vundle](https://github.com/gmarik/vundle).
+Based on [Vimifield](https://github.com/zaiste/vimified.git) and the [Vundle](https://github.com/gmarik/vundle).
 
 
 How to install
