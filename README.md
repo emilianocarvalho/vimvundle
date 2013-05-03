@@ -28,11 +28,11 @@ Create required directories
     mkdir bundle
     mkdir -p tmp/backup tmp/swap tmp/undo
 
-    **Colors**
+**Colors**
 
     mkdir colors 
 
-    or copy your preferred schema color in vimvundle
+or copy your preferred schema color in vimvundle
 
 Set up Vundle
 
@@ -42,7 +42,7 @@ Install plugins:
 
     $ vim +BundleInstall +qall
 
-    or
+or
 
     $ vim
     :BundleInstall
