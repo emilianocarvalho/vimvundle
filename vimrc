@@ -1,17 +1,15 @@
 " vimrc
-" Author: Emiliano Carvalho <emilianojpaoh@zaiste.net>
-" Source: https://github.com/zaiste/vimified
+" Author: Emiliano Carvalho <emilianojpa@gmail.com>
+" Source: https://github.com/emilianocarvalho/vimvundle
 "
-" Have fun!
-"
-" Fork
-" Emiliano Carvalho
 
 " _. Settings
 
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+" you color
+"
 colorscheme molokai
 
 set splitbelow
@@ -34,6 +32,8 @@ set list
 " Don't redraw while executing macros
 set nolazyredraw
 
+" add to listchars ,eof:¬, want to mark the end of line
+"
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 set showbreak=↪
 
