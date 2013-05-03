@@ -5,7 +5,7 @@ Repository for Vim with Vundle, trying not change the standard features of Vim.
 
 Based on the Vimifield Zaiste!
 
-[Vimifield](git://github.com/zaiste/vimified.git).
+[Vimifield](https://github.com/zaiste/vimified.git).
 
 [Vundle](https://github.com/gmarik/vundle).
 
