@@ -80,15 +80,13 @@ set noswapfile
 " _ }}}
 
 
-" PACKAGES *******************************************************************
-"
-" ****************************************************************************
+" PACKAGES {{{
 
 " let Vundle manage Vundle
 " required! 
 Bundle 'gmarik/vundle'
 
-" General 
+" _. General 
     Bundle "mileszs/ack.vim"
     nnoremap <leader>a :Ack!<space>
     Bundle 'tsaleh/vim-align'
@@ -127,15 +125,15 @@ Bundle 'gmarik/vundle'
     "Bundle 'troydm/easybuffer.vim'
     "nmap <leader>be :EasyBufferToggle<enter>
 
-" Fancy
+" _. Fancy
 "
-" Powerline
+"   Powerline
     " set laststatus=2 - UP - ACIMA
     Bundle 'git://github.com/Lokaltog/powerline.git'
     set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
     filetype plugin indent on     " required!
 
-" OS
+" _. OS
     Bundle 'zaiste/tmux.vim'
     Bundle 'benmills/vimux'
     map <Leader>rp :VimuxPromptCommand<CR>
