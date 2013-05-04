@@ -34,7 +34,7 @@ or copy your preferred schema color in vimvundle
 
 **Set up Vundle**
 
-    git clone https://github.com/gmarik/vundle.git bundle/vundle
+    git clone http://github.com/gmarik/vundle.git ~/.vim/vundle.git
 
 **Install plugins:**
 
