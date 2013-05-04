@@ -4,7 +4,8 @@ vimvundle
 Repository for Vim with Vundle, trying not change the standard features of Vim.
 
 
-Based on [Vimifield](https://github.com/zaiste/vimified.git) and the [Vundle](https://github.com/gmarik/vundle).
+Based on [Vimifield](https://github.com/zaiste/vimified.git) 
+and the [Vundle](https://github.com/gmarik/vundle).
 
 
 How to install
@@ -33,7 +34,7 @@ or copy your preferred schema color in vimvundle
 
 **Set up Vundle**
 
-    git clone https://github.com/gmarik/vundle.git bundle/vundle
+    git clone http://github.com/gmarik/vundle.git ~/.vim/vundle.git
 
 **Install plugins:**
 
