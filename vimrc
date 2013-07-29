@@ -3,14 +3,29 @@
 " Source: https://github.com/emilianocarvalho/vimvundle
 "
 
+
 " _. Settings
 
-set nocompatible               " be iMproved
-filetype off                   " required!
+set nocompatible              " be iMproved
+filetype on                   " required! //off
+filetype indent on            " Enable filetype-specific indenting
+filetype plugin on            " Enable filetype-specific plugins
+
+" Add recently accessed projects menu (project plugin)
+set viminfo^=!
+
+set autochdir
 
 " you color
 "
 colorscheme molokai
+
+iabbrev ec@ "Emiliano Carvalho"
+iabbrev ecmail@ emilianojpa@gmail.com
+syntax keyword WordError ec@
+syntax keyword WordError ecmail@
+
+syntax enable
 
 set splitbelow
 
@@ -60,11 +75,14 @@ set secure
 " _ White characters
 set autoindent
 set tabstop=4
+
 set softtabstop=4
+set expandtab
+set smarttab
+set shiftwidth=2
+
 
 set textwidth=120
-set shiftwidth=4
-"set expandtab
 "set wrap
 "set formatoptions=qrn1
 "set colorcolumn=+1
@@ -74,8 +92,8 @@ set visualbell
 set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc,tmp,*.scssc
 set wildmenu
 
-" _. folding
-
+" _ folding
+set nofoldenable
 set foldlevelstart=0
 set foldmethod=syntax
 
@@ -90,6 +108,9 @@ set directory=~/.vim/tmp/swap//   " swap files
 set backup
 set noswapfile
 
+" _. RSense - Ruby code
+"let g:rsenseUseOmniFunc = 1
+"let g:rsenseHome = $RSENSE_HOME -- aspas o/c
 
 " Coloca um cabecalho para scripts 'bash' caso a linha 1 esteja vazia
 au BufEnter *.sh if getline(1) == "" | :call setline(1, "#!/usr/bin/env bash") | endif
@@ -103,7 +124,6 @@ au BufEnter *.sh if getline(1) == "" | :call setline(1, "#!/usr/bin/env bash") |
 set ttyfast    "Envia mais caracteres ao terminal, melhorando o redraw de janelas.
 
 
-" PACKAGES {{{
 
 " _. Vundle
 "
@@ -115,13 +135,13 @@ set ttyfast    "Envia mais caracteres ao terminal, melhorando o redraw de janela
     Bundle "mileszs/ack.vim"
     nnoremap <leader>a :Ack!<space>
     Bundle 'tsaleh/vim-align'
-    "Bundle 'tpope/vim-endwise'
-    "Bundle 'tpope/vim-repeat'
-    "Bundle 'tpope/vim-speeddating'
+    Bundle 'tpope/vim-endwise'
+    Bundle 'tpope/vim-repeat'
+    Bundle 'tpope/vim-speeddating'
     Bundle 'tpope/vim-surround'
-    "Bundle 'tpope/vim-unimpaired'
-    "Bundle 'maxbrunsfeld/vim-yankstack'
-    "Bundle 'tpope/vim-eunuch'
+    Bundle 'tpope/vim-unimpaired'
+    Bundle 'maxbrunsfeld/vim-yankstack'
+    Bundle 'tpope/vim-eunuch'
 
     Bundle 'scrooloose/nerdtree'
     nmap <C-n> :NERDTreeToggle<CR>
@@ -141,7 +161,7 @@ set ttyfast    "Envia mais caracteres ao terminal, melhorando o redraw de janela
 
     Bundle 'michaeljsmith/vim-indent-object'
     " analisar documentacao plugin IndentObject.vim
-    let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown"]
+    let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "ruby", "yaml", "markdown"]
 
     Bundle 'Spaceghost/vim-matchit'
     Bundle 'kien/ctrlp.vim'
@@ -152,7 +172,10 @@ set ttyfast    "Envia mais caracteres ao terminal, melhorando o redraw de janela
 
 " _. Fancy
 "
-"   Powerline
+" Powerline
+	let g:Powerline_symbols = 'fancy'
+    "let g:Powerline_colorscheme = 'solarized256'
+	set t_Co=256
     " set laststatus=2 - UP - ACIMA
     Bundle 'git://github.com/Lokaltog/powerline.git'
     set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
@@ -190,7 +213,7 @@ set ttyfast    "Envia mais caracteres ao terminal, melhorando o redraw de janela
     nmap <leader># :call NERDComment(0, "invert")<cr>
     vmap <leader># :call NERDComment(0, "invert")<cr>
 
-    " - Bundle 'msanders/snipmate.vim'
+    Bundle 'msanders/snipmate.vim'
     Bundle 'sjl/splice.vim'
 
     Bundle 'tpope/vim-fugitive'
@@ -272,8 +295,8 @@ set ttyfast    "Envia mais caracteres ao terminal, melhorando o redraw de janela
 
     "au BufEnter *.hs compiler ghc
 
-    "let g:ghc = "'/usr/local/bin/ghc' retirada as aspas duplas
-    "let g:haddock_browser = "'open'
+    "let g:ghc = /usr/local/bin/ghc
+    "let g:haddock_browser = open
 
 
 " _. Color 
@@ -283,14 +306,96 @@ set ttyfast    "Envia mais caracteres ao terminal, melhorando o redraw de janela
     Bundle 'zaiste/Atom'
     Bundle 'w0ng/vim-hybrid'
 
-" PACKAGES }}}
+"
+" PACKAGES END ******************************************************************************
+"
+"
+" Recarregar o vimrc
+" Source the .vimrc or _vimrc file, depending on system
+if &term == "win32" || "pcterm" || has("gui_win32")
+        map ,v :e $HOME/_vimrc<CR>
+        nmap <F12> :<C-u>source ~/_vimrc <BAR> echo "Vimrc recarregado!"<CR>
+else
+        map ,v :e $HOME/.vimrc<CR>
+        nmap <F12> :<C-u>source ~/.vimrc <BAR> echo "Vimrc recarregado!"<CR>
+endif  
+
+" snipmate function
+"
+fun! GetSnipsInCurrentScope()
+    let snips = {}
+    for scope in [bufnr('%')] + split(&ft, '\.') + ['_']
+      call extend(snips, get(s:snippets, scope, {}), 'keep')
+      call extend(snips, get(s:multi_snips, scope, {}), 'keep')
+    endfor
+    return snips
+endfun
 
 
+" função para inserir cabeçalhos python
+fun! BufNewFile_PY()
+        normal(1G)
+        :set ft=python
+        :set ts=2
+        call append(0, "#!/usr/bin/env python")
+        call append(1, "# # -*- coding: UTF-8 -*-")
+        call append(2, "# Created:" . strftime("%a %d/%b/%Y hs %H:%M"))
+        call append(3, "# Last Change: " . strftime("%a %d/%b/%Y hs %H:%M"))
+        call append(4, "# Institution: <+nome+>")
+        call append(5, "# Purpuse of script: <+descreva+>")
+        call append(6, "# Author: <+seuNome+>")
+        call append(7, "# site: <+seuSite+>")
+        normal gg
+endfun
+autocmd BufNewFile *.py call BufNewFile_PY()
+map ,py :call BufNewFile_PY()<cr>A
 
+" função para inserir cabeçalhos ruby
+fun! BufNewFile_Ruby()
+        normal(1G)
+        :set ft=ruby
+        :set ts=2
+        call append(0, "#!/usr/bin/env ruby")
+        call append(1, "# # -*- coding: UTF-8 -*-")
+        call append(2, "# Created:" . strftime("%a %d/%b/%Y hs %H:%M"))
+        call append(3, "# Last Change: " . strftime("%a %d/%b/%Y hs %H:%M"))
+        call append(4, "# Institution: <+nome+>")
+        call append(5, "# Purpuse: <+descreva+>")
+        call append(6, "# Author: <+seuNome+>")
+        call append(7, "# site: <+seuSite+>")
+        normal gg
+endfun
+autocmd BufNewFile *.rb call BufNewFile_Ruby()
+map ,rb :call BufNewFile_Ruby()<cr>A
 
-" PACKAGE TagBar - Setup
+" Cria um cabeçalho para scripts bash
+fun! InsertHeadBash()
+   normal(1G)
+   :set ft=bash
+   :set ts=4
+   call append(0, "#!/usr/bin/env bash")
+   call append(1, "# Created : " . strftime("%a %d/%b/%Y hs %H:%M"))
+   call append(2, "# Last Change: " . strftime("%a %d/%b/%Y hs %H:%M"))
+   call append(3, "# Author : Emiliano Carvalho")
+   call append(3, "# Script : ")
+   normal($)
+endfun
+map ,sh :call InsertHeadBash()<cr>
 
-    nmap <F8> :TagbarToggle<CR>
+" Coloca um cabecalho para scripts 'bash' caso a linha 1 esteja vazia
+au BufEnter *.sh if getline(1) == "" | :call setline(1, "#!/usr/bin/env bash") | endif
+
+" Fechamento automatico de parenteses
+imap { {}<left>
+imap ( ()<left>
+imap [ []<left>
+
+" set ve=all "permite mover o cursor para areas onde nao há texto.
+set ttyfast    "Envia mais caracteres ao terminal, melhorando o redraw de janelas.
+
+" _. PACKAGE TagBar
+
+	nmap <F8> :TagbarToggle<CR>
 
 " _. Ruby
 "
